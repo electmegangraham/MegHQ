@@ -1,0 +1,97 @@
+
+File                             LineNumber Line
+----                             ---------- ----
+V5_UNIFIED_MASTER_SPEC.md                17 - Megan's Desk
+V5_UNIFIED_MASTER_SPEC.md                18 - Staff Mode
+V5_UNIFIED_MASTER_SPEC.md                45 ### 1. Megan's Desk
+V5_UNIFIED_MASTER_SPEC.md                55 ### 2. Staff Mode
+V5_UNIFIED_MASTER_SPEC.md                82 - Megan's Desk is the primary executive interface
+V5_UNIFIED_MASTER_SPEC.md                83 - Staff Mode is not Megan's Desk
+V5_UNIFIED_MASTER_SPEC.md                84 - recommendation is not decision
+V5_UNIFIED_MASTER_SPEC.md                85 - review is not approval
+V5_UNIFIED_MASTER_SPEC.md               142 Megan's Desk executive interaction and attention control model.
+V5_UNIFIED_MASTER_SPEC.md               148 Staff Mode operational interaction and execution control model.
+V5_UNIFIED_MASTER_SPEC.md               155 - final authority
+V5_UNIFIED_MASTER_SPEC.md               200 3. high-signal item may surface to Megan's Desk
+V5_UNIFIED_MASTER_SPEC.md               284 - staff mode UX file for operational surface truth
+V5_UNIFIED_MASTER_SPEC.md               316 MeganCampaignHQ V5 is a governed campaign operating system centered on Mega…
+V5_OBJECT_MODEL.md                      260 - approval must reference exactly one artifact version
+V5_OBJECT_MODEL.md                      262 - invalidated approval must not continue to authorize execution
+V5_OBJECT_MODEL.md                      268 Executive projection object for Megan’s Desk.
+V5_OBJECT_MODEL.md                      298 - DeskItem is a projection, not the underlying object
+V5_OBJECT_MODEL.md                      324 - approval MUST reference exactly one artifact version
+V5_OBJECT_MODEL.md                      326 - approval MUST NOT float unattached to protected work
+V5_OBJECT_MODEL.md                      399 - Campaign Manager may route, escalate, surface, and sequence work, but mus…
+V5_OBJECT_MODEL.md                      456 - artifact material change after approval MUST invalidate affected approval…
+V5_OBJECT_MODEL.md                      468 DeskItem is never the source of truth.
+V5_OBJECT_MODEL.md                      469 DeskItem is an executive projection of canonical underlying objects.
+V5_TASK_INITIATIVE_EXECUTION.md         209 - initiative must move to `needs_Megan_resolution` when final authority, ma…
+V5_TASK_INITIATIVE_EXECUTION.md         354 - review is not approval
+V5_APPROVAL_ARTIFACT_DESKITEM.md         23 - material artifact revision after approval must invalidate approval unless…
+V5_APPROVAL_ARTIFACT_DESKITEM.md        136 Executive projection object for Megan’s Desk.
+V5_APPROVAL_ARTIFACT_DESKITEM.md        190 - DeskItem is not the artifact
+V5_APPROVAL_ARTIFACT_DESKITEM.md        191 - DeskItem is an executive rendering of artifact/approval context
+V5_APPROVAL_ARTIFACT_DESKITEM.md        197 - DeskItem is not itself the approval record
+V5_APPROVAL_ARTIFACT_DESKITEM.md        223 - dependent execution that required that approval must no longer rely on pr…
+V5_APPROVAL_ARTIFACT_DESKITEM.md        224 - a new approval must be requested if doctrine requires it
+V5_APPROVAL_ARTIFACT_DESKITEM.md        253 - expired approval must not authorize execution
+V5_APPROVAL_ARTIFACT_DESKITEM.md        254 - invalidated approval must not authorize execution
+V5_APPROVAL_ARTIFACT_DESKITEM.md        389 - material artifact revision after approval must invalidate approval
+V5_APPROVAL_ARTIFACT_DESKITEM.md        399 - DeskItem is a projection layer, not canonical work-product truth
+V5_APPROVAL_ARTIFACT_DESKITEM.md        410 Approval must be:
+V5_MEGANS_DESK_UX.md                      1 # MeganCampaignHQ V5 Megan's Desk UX
+V5_MEGANS_DESK_UX.md                      7 Megan's Desk is the primary executive interface.
+V5_MEGANS_DESK_UX.md                     26 Megan's Desk is the executive command surface for:
+V5_MEGANS_DESK_UX.md                    296 - treating the Desk like Staff Mode
+V5_MEGANS_DESK_UX.md                    301 ## Separation From Staff Mode
+V5_MEGANS_DESK_UX.md                    310 Staff Mode:
+V5_MEGANS_DESK_UX.md                    318 Staff Mode may feed the Desk.
+V5_MEGANS_DESK_UX.md                    319 Desk must not collapse into Staff Mode.
+V5_MEGANS_DESK_UX.md                    325 Megan's Desk is the command surface.
+V5_STAFF_MODE_UX.md                       1 # MeganCampaignHQ V5 Staff Mode UX
+V5_STAFF_MODE_UX.md                       7 Staff Mode is not Megan's Desk.
+V5_STAFF_MODE_UX.md                       9 Staff Mode exists for:
+V5_STAFF_MODE_UX.md                      28 Staff Mode is the governed operating surface for staff and campaign managem…
+V5_STAFF_MODE_UX.md                      38 - feed high-signal items upward to Megan's Desk when justified
+V5_STAFF_MODE_UX.md                      48 ## Staff Mode Design Principles
+V5_STAFF_MODE_UX.md                      89 ## Staff Mode Surface Areas
+V5_STAFF_MODE_UX.md                     139 Staff Mode should default to:
+V5_STAFF_MODE_UX.md                     165 Staff Mode must make these distinctions explicit:
+V5_STAFF_MODE_UX.md                     210 Staff Mode may request or show approval, but must not silently complete it.
+V5_STAFF_MODE_UX.md                     281 ## Staff Mode vs Megan's Desk
+V5_STAFF_MODE_UX.md                     283 ### Staff Mode
+V5_STAFF_MODE_UX.md                     291 ### Megan's Desk
+V5_STAFF_MODE_UX.md                     300 Staff Mode may feed Megan's Desk.
+V5_STAFF_MODE_UX.md                     301 Megan's Desk must not be replaced by Staff Mode.
+V5_STAFF_MODE_UX.md                     302 Staff Mode must not mimic executive surfacing logic as its default behavior.
+V5_STAFF_MODE_UX.md                     315 - using Staff Mode as a raw data dump
+V5_STAFF_MODE_UX.md                     322 Staff Mode must always make visible:
+V5_STAFF_MODE_UX.md                     331 Any meaningful state mutation from Staff Mode must be auditable.
+V5_STAFF_MODE_UX.md                     337 Staff Mode must be hardened for:
+V5_STAFF_MODE_UX.md                     350 Staff Mode is the disciplined operating surface for campaign execution.
+V5_AUTHORITY_AND_DOCTRINE.md             25 - final authority structure
+V5_AUTHORITY_AND_DOCTRINE.md             46 ### Final Authority
+V5_AUTHORITY_AND_DOCTRINE.md             47 Megan is final authority for:
+V5_AUTHORITY_AND_DOCTRINE.md            100 Specialized authority does not replace Megan’s final authority when doctrin…
+V5_AUTHORITY_AND_DOCTRINE.md            199 - Megan: full executive view and final authority where doctrine requires
+V5_AUTHORITY_AND_DOCTRINE.md            209 - every approval must have explicit approval owner
+V5_AUTHORITY_AND_DOCTRINE.md            271 - convert review authority into final authority
+V5_BUILD_SEQUENCE.md                    220 1. Staff Mode
+V5_BUILD_SEQUENCE.md                    221 2. Megan's Desk
+V5_BUILD_SEQUENCE.md                    226 - Staff Mode depends on execution truth
+V5_BUILD_SEQUENCE.md                    227 - Megan's Desk depends on desk projection rules, approval logic, authority …
+V5_BUILD_SEQUENCE.md                    315 - building Megan's Desk before execution and approval logic are locked
+V5_BUILD_AND_MIGRATION_PLAN.md          189 6. Staff Mode surface
+V5_BUILD_AND_MIGRATION_PLAN.md          190 7. Megan's Desk surface
+V5_BUILD_AND_MIGRATION_PLAN.md          259 - Staff Mode
+V5_BUILD_AND_MIGRATION_PLAN.md          260 - Megan's Desk
+V5_BUILD_AND_MIGRATION_PLAN.md          313 - Staff Mode does not collapse into Desk
+V5_VALIDATION_AND_QUERY_LAYER.md        159 Approval must validate:
+V5_VALIDATION_AND_QUERY_LAYER.md        240 - approval must exist
+V5_VALIDATION_AND_QUERY_LAYER.md        241 - approval must reference the correct artifact version
+V5_VALIDATION_AND_QUERY_LAYER.md        242 - approval must be in valid approved state
+V5_VALIDATION_AND_QUERY_LAYER.md        243 - approval must not be expired
+V5_VALIDATION_AND_QUERY_LAYER.md        244 - approval must not be invalidated
+V5_VALIDATION_AND_QUERY_LAYER.md        265 - final authority boundaries
+V5_VALIDATION_AND_QUERY_LAYER.md        270 - Staff Mode vs Desk projection distinction
+

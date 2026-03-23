@@ -1,0 +1,83 @@
+
+File                             LineNumber Line
+----                             ---------- ----
+V5_OBJECT_MODEL.md                       80 - `owner_id` : primary responsible actor/seat/object
+V5_OBJECT_MODEL.md                       84 - `source_trace` : source reference or provenance note
+V5_OBJECT_MODEL.md                       85 - `visibility_scope` : enum(`executive`,`staff`,`department`,`system`,`mixe…
+V5_OBJECT_MODEL.md                       86 - `linked_object_ids` : array of canonical object ids
+V5_OBJECT_MODEL.md                       87 - `audit_enabled` : boolean
+V5_OBJECT_MODEL.md                      114 - `owner_id`
+V5_OBJECT_MODEL.md                      117 - `priority`
+V5_OBJECT_MODEL.md                      118 - `urgency`
+V5_OBJECT_MODEL.md                      121 - `artifact_ids[]`
+V5_OBJECT_MODEL.md                      126 - `source_trace`
+V5_OBJECT_MODEL.md                      159 - `owner_id`
+V5_OBJECT_MODEL.md                      163 - `required_artifact_ids[]`
+V5_OBJECT_MODEL.md                      165 - `risk_owner_id`
+V5_OBJECT_MODEL.md                      172 - `source_trace`
+V5_OBJECT_MODEL.md                      202 - `owner_id`
+V5_OBJECT_MODEL.md                      203 - `department_owner_id`
+V5_OBJECT_MODEL.md                      205 - `source_trace`
+V5_OBJECT_MODEL.md                      207 - `linked_object_ids[]`
+V5_OBJECT_MODEL.md                      208 - `approval_state`
+V5_OBJECT_MODEL.md                      239 - `artifact_id`
+V5_OBJECT_MODEL.md                      240 - `artifact_version`
+V5_OBJECT_MODEL.md                      241 - `linked_object_ids[]`
+V5_OBJECT_MODEL.md                      276 - `linked_object_ids[]`
+V5_OBJECT_MODEL.md                      277 - `linked_artifact_ids[]`
+V5_OBJECT_MODEL.md                      283 - `priority_band`
+V5_OBJECT_MODEL.md                      287 - `source_trace`
+V5_OBJECT_MODEL.md                      426 - `artifact_version_created`
+V5_TASK_INITIATIVE_EXECUTION.md          45 - `owner_id`
+V5_TASK_INITIATIVE_EXECUTION.md          49 - `priority`
+V5_TASK_INITIATIVE_EXECUTION.md          50 - `urgency`
+V5_TASK_INITIATIVE_EXECUTION.md          51 - `queue_class`
+V5_TASK_INITIATIVE_EXECUTION.md          57 - `artifact_ids[]`
+V5_TASK_INITIATIVE_EXECUTION.md          63 - `source_trace`
+V5_TASK_INITIATIVE_EXECUTION.md          73 - `owner_id`
+V5_TASK_INITIATIVE_EXECUTION.md          78 - `priority`
+V5_TASK_INITIATIVE_EXECUTION.md          79 - `urgency`
+V5_TASK_INITIATIVE_EXECUTION.md          81 - `required_artifact_ids[]`
+V5_TASK_INITIATIVE_EXECUTION.md          84 - `risk_owner_id`
+V5_TASK_INITIATIVE_EXECUTION.md          90 - `source_trace`
+V5_TASK_INITIATIVE_EXECUTION.md         102 - `owner_id`
+V5_TASK_INITIATIVE_EXECUTION.md         115 - `from_owner_id`
+V5_TASK_INITIATIVE_EXECUTION.md         116 - `to_owner_id`
+V5_TASK_INITIATIVE_EXECUTION.md         213 ## Priority and Urgency Model
+V5_TASK_INITIATIVE_EXECUTION.md         215 ### Priority Enum
+V5_TASK_INITIATIVE_EXECUTION.md         221 ### Urgency Enum
+V5_TASK_INITIATIVE_EXECUTION.md         229 - priority expresses importance
+V5_TASK_INITIATIVE_EXECUTION.md         230 - urgency expresses time pressure
+V5_TASK_INITIATIVE_EXECUTION.md         231 - high urgency must not silently override doctrine or approval requirements
+V5_APPROVAL_ARTIFACT_DESKITEM.md         42 - `artifact_id`
+V5_APPROVAL_ARTIFACT_DESKITEM.md         43 - `artifact_version`
+V5_APPROVAL_ARTIFACT_DESKITEM.md         44 - `linked_object_ids[]`
+V5_APPROVAL_ARTIFACT_DESKITEM.md         49 - `priority_band`
+V5_APPROVAL_ARTIFACT_DESKITEM.md         53 - `source_trace`
+V5_APPROVAL_ARTIFACT_DESKITEM.md         90 - `owner_id`
+V5_APPROVAL_ARTIFACT_DESKITEM.md         91 - `department_owner_id`
+V5_APPROVAL_ARTIFACT_DESKITEM.md         94 - `source_trace`
+V5_APPROVAL_ARTIFACT_DESKITEM.md         96 - `approval_state`
+V5_APPROVAL_ARTIFACT_DESKITEM.md         97 - `linked_object_ids[]`
+V5_APPROVAL_ARTIFACT_DESKITEM.md        101 - `superseded_by_artifact_id`
+V5_APPROVAL_ARTIFACT_DESKITEM.md        144 - `linked_object_ids[]`
+V5_APPROVAL_ARTIFACT_DESKITEM.md        145 - `linked_artifact_ids[]`
+V5_APPROVAL_ARTIFACT_DESKITEM.md        151 - `priority_band`
+V5_APPROVAL_ARTIFACT_DESKITEM.md        153 - `source_trace`
+V5_MEGANS_DESK_UX.md                    105 - low-priority task lists
+V5_MEGANS_DESK_UX.md                    141 - engaged -> interrupt only for true urgency
+V5_MEGANS_DESK_UX.md                    263 No unexplained priority.
+V5_STAFF_MODE_UX.md                     105 - priority and urgency
+V5_STAFF_MODE_UX.md                     232 - priority
+V5_STAFF_MODE_UX.md                     233 - urgency
+V5_BUILD_SEQUENCE.md                    103 ### Priority Reconciliation Targets
+V5_VALIDATION_AND_QUERY_LAYER.md         95 - `owner_id`
+V5_VALIDATION_AND_QUERY_LAYER.md         99 - `source_trace`
+V5_VALIDATION_AND_QUERY_LAYER.md        100 - `linked_object_ids`
+V5_VALIDATION_AND_QUERY_LAYER.md        101 - `visibility_scope`
+V5_VALIDATION_AND_QUERY_LAYER.md        102 - `audit_enabled`
+V5_VALIDATION_AND_QUERY_LAYER.md        117 - valid priority/urgency
+V5_VALIDATION_AND_QUERY_LAYER.md        321 - priority
+V5_VALIDATION_AND_QUERY_LAYER.md        322 - urgency
+V5_VALIDATION_AND_QUERY_LAYER.md        410 - priority/urgency
+
