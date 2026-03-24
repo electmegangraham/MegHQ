@@ -10,6 +10,7 @@ import { registerExecutionRoutes } from "./routes/execution.js";
 import { registerCampaignManagerRoutes } from "./routes/campaignManager.js";
 import { registerVerticalSliceRoutes } from "./routes/verticalSlice.js";
 import { registerAuditRoutes } from "./routes/audit.js";
+import { registerMemoryRoutes } from "./routes/memory.js";
 
 import { registerAuthGuardHook } from "./lib/authGuard.js";
 
@@ -29,6 +30,7 @@ export function buildApp() {
   registerCampaignManagerRoutes(app);
   registerVerticalSliceRoutes(app);
   registerAuditRoutes(app);
+  registerMemoryRoutes(app);
 
   return app;
 }
