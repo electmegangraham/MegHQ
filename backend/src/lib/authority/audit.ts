@@ -1,26 +1,21 @@
-import type { AuthorityCheckInput, AuthorityCheckResult } from "./types.js";
-
-export interface AuthorityAuditEvent {
-  eventType: "authority_check";
-  actorRole: string;
-  decisionClass: string;
-  action: string;
-  allowed: boolean;
-  reason: string;
-  createdAt: string;
-}
+import type { AuthorityInput, AuthorityResult } from "./types.js";
 
 export function toAuthorityAuditEvent(
-  input: AuthorityCheckInput,
-  result: AuthorityCheckResult
-): AuthorityAuditEvent {
+  input: AuthorityInput,
+  result: AuthorityResult
+) {
   return {
-    eventType: "authority_check",
-    actorRole: input.actorRole,
-    decisionClass: input.decisionClass,
-    action: input.action,
-    allowed: result.allowed,
-    reason: result.reason,
-    createdAt: new Date().toISOString()
+    event_type: "authority_check",
+    actor_type: input.actor.type,
+    payload: {
+      actorId: input.actor.id,
+      action: input.action,
+      resourceType: input.resource.type,
+      resourceId: input.resource.id,
+      allowed: result.allowed,
+      reason: result.reason,
+      requiresApproval: result.requiresApproval === true,
+      approvalId: result.approvalId
+    }
   };
 }

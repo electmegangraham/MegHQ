@@ -1,39 +1,75 @@
-import type { AuthorityCheckInput, AuthorityCheckResult } from "./types.js";
+import type { AuthorityInput, AuthorityResult } from "./types.js";
 
-const VALID_APPROVALS = new Set(["approved"]);
+function isNonEmptyString(value: unknown): value is string {
+  return typeof value === "string" && value.trim().length > 0;
+}
 
-export function checkAuthority(input: AuthorityCheckInput): AuthorityCheckResult {
-  const { actorRole, decisionClass, approvalRequired, approvalStatus } = input;
-
-  if (actorRole === "System" && decisionClass !== "Class E - Automated / System Action") {
+export function checkAuthority(input: AuthorityInput): AuthorityResult {
+  if (!input || typeof input !== "object") {
     return {
       allowed: false,
-      reason: "System automation may not impersonate non-automated authority classes.",
-      escalationTarget: "Megan"
+      reason: "Authority input is required."
     };
   }
 
-  if (decisionClass === "Class A - Executive Final" && actorRole !== "Megan") {
+  if (!input.actor || typeof input.actor !== "object") {
     return {
       allowed: false,
-      reason: "Executive final decisions require Megan.",
-      escalationTarget: "Megan"
+      reason: "Authority actor is required."
     };
   }
 
-  if (decisionClass === "Class B - Executive Review / Approval" && !["Megan", "ExecutiveDelegate"].includes(actorRole)) {
+  if (input.actor.type !== "system" && input.actor.type !== "user") {
     return {
       allowed: false,
-      reason: "Executive review class requires executive authority.",
-      escalationTarget: "Megan"
+      reason: "Authority actor.type must be 'system' or 'user'."
     };
   }
 
-  if (approvalRequired && !VALID_APPROVALS.has(String(approvalStatus ?? ""))) {
+  if (!isNonEmptyString(input.actor.id)) {
     return {
       allowed: false,
-      reason: "Protected action requires valid approved status.",
-      escalationTarget: "Megan"
+      reason: "Authority actor.id is required."
+    };
+  }
+
+  if (!isNonEmptyString(input.action)) {
+    return {
+      allowed: false,
+      reason: "Authority action is required."
+    };
+  }
+
+  if (!input.resource || typeof input.resource !== "object") {
+    return {
+      allowed: false,
+      reason: "Authority resource is required."
+    };
+  }
+
+  if (!isNonEmptyString(input.resource.type)) {
+    return {
+      allowed: false,
+      reason: "Authority resource.type is required."
+    };
+  }
+
+  const approvalRequired = input.context?.["approvalRequired"] === true;
+  const approvalId = input.context?.["approvalId"];
+
+  if (approvalRequired) {
+    return {
+      allowed: true,
+      requiresApproval: true,
+      reason: "Protected action requires approval before execution.",
+      ...(typeof approvalId === "string" ? { approvalId } : {})
+    };
+  }
+
+  if (input.actor.type === "system" && input.context?.["userOnly"] === true) {
+    return {
+      allowed: false,
+      reason: "This action requires a user actor."
     };
   }
 

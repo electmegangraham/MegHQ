@@ -1,28 +1,45 @@
-export type DecisionClass =
-  | "Class A - Executive Final"
-  | "Class B - Executive Review / Approval"
-  | "Class C - Manager Governed"
-  | "Class D - Department Governed"
-  | "Class E - Automated / System Action";
+export type AuthorityActorType = "system" | "user";
 
-export type ActorRole =
-  | "Megan"
-  | "ExecutiveDelegate"
-  | "CampaignManager"
-  | "DepartmentLead"
-  | "Staff"
-  | "System";
-
-export interface AuthorityCheckInput {
-  actorRole: ActorRole;
-  decisionClass: DecisionClass;
+export interface AuthorityInput {
+  actor: {
+    type: AuthorityActorType;
+    id: string;
+  };
   action: string;
-  approvalStatus?: string | null;
-  approvalRequired?: boolean;
+  resource: {
+    type: string;
+    id?: string;
+  };
+  context?: Record<string, unknown>;
 }
 
-export interface AuthorityCheckResult {
+export interface AuthorityResult {
   allowed: boolean;
-  reason: string;
-  escalationTarget?: "Megan" | "Manager" | "DepartmentLead";
+  reason?: string;
+  requiresApproval?: boolean;
+  approvalId?: string;
+}
+
+export class AuthorityDeniedError extends Error {
+  readonly statusCode = 403;
+  readonly code = "AUTHORITY_DENIED";
+  readonly details: AuthorityResult;
+
+  constructor(result: AuthorityResult) {
+    super(result.reason ?? "Authority denied.");
+    this.details = result;
+    this.name = "AuthorityDeniedError";
+  }
+}
+
+export class AuthorityApprovalRequiredError extends Error {
+  readonly statusCode = 400;
+  readonly code = "APPROVAL_REQUIRED";
+  readonly details: AuthorityResult;
+
+  constructor(result: AuthorityResult) {
+    super(result.reason ?? "Approval required.");
+    this.details = result;
+    this.name = "AuthorityApprovalRequiredError";
+  }
 }

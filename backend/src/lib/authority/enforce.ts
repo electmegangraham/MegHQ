@@ -1,7 +1,21 @@
+import { checkAuthority } from "./rules.js";
+import {
+  AuthorityApprovalRequiredError,
+  AuthorityDeniedError,
+  type AuthorityInput,
+  type AuthorityResult
+} from "./types.js";
 
-export function enforceAuthority() {
-  const approved = false;
-  if (!approved) {
-    throw new Error("Action requires approval");
+export function enforceAuthority(input: AuthorityInput): AuthorityResult {
+  const result = checkAuthority(input);
+
+  if (!result.allowed) {
+    throw new AuthorityDeniedError(result);
   }
+
+  if (result.requiresApproval) {
+    throw new AuthorityApprovalRequiredError(result);
+  }
+
+  return result;
 }
