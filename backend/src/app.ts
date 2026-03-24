@@ -1,7 +1,7 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
 import sensible from "@fastify/sensible";
-import { registerHealthRoute } from "./routes/health.js";
+import { registerHealthRoute } from "./routes/health.js";`nimport { registerAuditRoutes } from "./routes/audit.js";
 import { registerDbHealthRoute } from "./routes/dbHealth.js";
 import { registerValidationRoutes } from "./routes/validation.js";
 import { registerAuthorityRoutes } from "./routes/authority.js";
@@ -40,5 +40,5 @@ export function buildApp() {
   registerRelationshipPowerRoutes(app);
   registerTasteWebsiteRoutes(app);
 
-  return app;
+  registerAuditRoutes(app);`n  return app;
 }
