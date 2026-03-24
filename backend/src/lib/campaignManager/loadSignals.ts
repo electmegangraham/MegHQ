@@ -39,15 +39,25 @@ export async function loadCampaignSignals(): Promise<CampaignSignal[]> {
 
   const rows = (data ?? []) as TaskSignalRow[];
 
-  return rows.map((row) => ({
-    id: row.id,
-    title: row.title,
-    priority: row.priority ?? undefined,
-    urgency: row.urgency ?? undefined,
-    requiresApproval:
-      row.status === "awaiting_approval" || (row.approval_ids?.length ?? 0) > 0,
-    isBlocked:
-      row.status === "blocked" || (row.blocker_ids?.length ?? 0) > 0,
-    sourceTrace: row.source_trace ?? null
-  }));
+  return rows.map((row) => {
+    const signal: CampaignSignal = {
+      id: row.id,
+      title: row.title,
+      requiresApproval:
+        row.status === "awaiting_approval" || (row.approval_ids?.length ?? 0) > 0,
+      isBlocked:
+        row.status === "blocked" || (row.blocker_ids?.length ?? 0) > 0,
+      sourceTrace: row.source_trace ?? null
+    };
+
+    if (row.priority) {
+      signal.priority = row.priority;
+    }
+
+    if (row.urgency) {
+      signal.urgency = row.urgency;
+    }
+
+    return signal;
+  });
 }
