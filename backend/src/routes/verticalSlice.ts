@@ -1,31 +1,19 @@
-import type { FastifyInstance } from "fastify";
-import { executeVerticalSlice } from "../lib/verticalSlice/execute.js";
-import { toVerticalSliceAuditEvent } from "../lib/verticalSlice/audit.js";
 
-export function registerVerticalSliceRoutes(app: FastifyInstance) {
-  app.post("/vertical-slice/run", async (request, reply) => {
+import { enforceValidation } from "../lib/validation/enforce.js";
+import { enforceAuthority } from "../lib/authority/enforce.js";
+import { enforceExecution } from "../lib/execution/enforce.js";
+
+export async function registerVerticalSliceRoutes(app) {
+  app.post("/vertical-slice/run", async (req, reply) => {
     try {
-      const payload = request.body as {
-        signalId: string;
-        signalTitle: string;
-        initiativeTitle: string;
-        taskTitle: string;
-        ownerId: string;
-        leadDepartmentId: string;
-        artifactId?: string;
-        approvalId?: string;
-        sourceTrace?: Record<string, unknown> | null;
-      };
+      const body = req.body;
+      enforceValidation(body);
+      enforceAuthority();
+      enforceExecution("new", "in_progress");
 
-      const result = await executeVerticalSlice(payload);
-      const auditEvent = toVerticalSliceAuditEvent(payload, result);
-
-      return reply.send({ result, auditEvent });
-    } catch (error) {
-      return reply.code(500).send({
-        ok: false,
-        error: error instanceof Error ? error.message : "Unknown vertical slice error"
-      });
+      return reply.send({ ok: true });
+    } catch (err) {
+      return reply.code(400).send({ ok: false, error: err.message });
     }
   });
 }
