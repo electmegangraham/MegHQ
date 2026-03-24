@@ -4,10 +4,10 @@ export interface TransitionRequest {
   objectType: WorkflowObjectType;
   currentStatus: string;
   nextStatus: string;
-  hasOpenBlocker?: boolean;
-  hasRequiredApproval?: boolean;
-  hasCompletionEvidence?: boolean;
-  sourceTrace?: Record<string, unknown> | null;
+  hasOpenBlocker?: boolean | undefined;
+  hasRequiredApproval?: boolean | undefined;
+  hasCompletionEvidence?: boolean | undefined;
+  sourceTrace?: Record<string, unknown> | null | undefined;
 }
 
 export interface TransitionResult {
@@ -16,5 +16,5 @@ export interface TransitionResult {
   currentStatus: string;
   nextStatus: string;
   reason: string;
-  sourceTrace?: Record<string, unknown> | null;
+  sourceTrace?: Record<string, unknown> | null | undefined;
 }

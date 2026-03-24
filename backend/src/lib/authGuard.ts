@@ -6,7 +6,7 @@ const OPEN_PATHS = new Set([
 
 function isOpenPath(request: FastifyRequest): boolean {
   const rawPath = request.routeOptions.url;
-  return OPEN_PATHS.has(rawPath);
+  return rawPath ? OPEN_PATHS.has(rawPath) : false;
 }
 
 export function registerAuthGuardHook(app: FastifyInstance) {

@@ -7,7 +7,7 @@ export interface LifecycleAuditEvent {
   nextStatus: string;
   allowed: boolean;
   reason: string;
-  sourceTrace?: Record<string, unknown> | null;
+  sourceTrace?: Record<string, unknown> | null | undefined;
   createdAt: string;
 }
 

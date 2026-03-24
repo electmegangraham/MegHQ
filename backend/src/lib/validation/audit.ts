@@ -3,11 +3,11 @@ import type { ValidationResult } from "./types.js";
 export interface ValidationAuditEvent {
   eventType: "validation_failure";
   objectType: string;
-  objectId?: string;
-  disposition?: "rejected" | "quarantined";
-  quarantineReason?: string;
+  objectId?: string | undefined;
+  disposition?: "rejected" | "quarantined" | undefined;
+  quarantineReason?: string | undefined;
   issueCodes: string[];
-  sourceTrace?: Record<string, unknown> | null;
+  sourceTrace?: Record<string, unknown> | null | undefined;
   createdAt: string;
 }
 
