@@ -2,6 +2,7 @@ import Fastify from "fastify";
 import cors from "@fastify/cors";
 import sensible from "@fastify/sensible";
 import { registerHealthRoute } from "./routes/health.js";
+import { registerDbHealthRoute } from "./routes/dbHealth.js";
 import { registerValidationRoutes } from "./routes/validation.js";
 import { registerAuthorityRoutes } from "./routes/authority.js";
 import { registerExecutionRoutes } from "./routes/execution.js";
@@ -25,6 +26,7 @@ export function buildApp() {
   registerAuthGuardHook(app);
 
   registerHealthRoute(app);
+  registerDbHealthRoute(app);
   registerValidationRoutes(app);
   registerAuthorityRoutes(app);
   registerExecutionRoutes(app);
