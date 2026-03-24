@@ -1,6 +1,11 @@
 import { getDbClient } from "../db/client.js";
 
-export async function persistAuditEvent(event) {
+type AuditEventInput = {
+  eventType?: string;
+  objectId?: string | null;
+};
+
+export async function persistAuditEvent(event: AuditEventInput) {
   const db = getDbClient();
 
   const { error } = await db.from("audit_events").insert({
