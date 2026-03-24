@@ -1,11 +1,11 @@
 import { getDbClient } from "../db/client.js";
 
-export async function persistAuditEvent(event: Record<string, unknown>) {
+export async function persistAuditEvent(event) {
   const db = getDbClient();
 
   const { error } = await db.from("audit_events").insert({
     event_type: event.eventType ?? "unknown",
-    data: event,
+    object_id: event.objectId ?? null,
     created_at: new Date().toISOString()
   });
 
