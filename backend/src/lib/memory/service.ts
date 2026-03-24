@@ -21,7 +21,7 @@ export async function searchMemory(input: MemorySearchInput) {
 
   return searchMemoryEntries({
     query: input.query.trim(),
-    limit: input.limit
+    ...(input.limit !== undefined ? { limit: input.limit } : {})
   });
 }
 

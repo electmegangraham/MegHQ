@@ -1,3 +1,4 @@
+
 import type { FastifyInstance } from "fastify";
 import { persistAuditEvent } from "../lib/audit/persist.js";
 import { toApprovalDecisionAuditEvent, toApprovalRequestedAuditEvent } from "../lib/approvals/audit.js";

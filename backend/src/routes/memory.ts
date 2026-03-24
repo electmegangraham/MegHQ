@@ -34,7 +34,7 @@ export function registerMemoryRoutes(app: FastifyInstance) {
 
       const result = await searchMemory({
         query: body?.query ?? "",
-        limit: body?.limit
+        ...(body?.limit !== undefined ? { limit: body.limit } : {})
       });
 
       return reply.code(200).send({ result });
