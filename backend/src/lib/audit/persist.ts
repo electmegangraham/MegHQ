@@ -9,6 +9,7 @@ export async function persistAuditEvent(_: unknown) {
 
   const { error } = await db.from("audit_events").insert({
     audit_id: generateAuditId(),
+    actor_type: "system",
     created_at: new Date().toISOString()
   });
 
