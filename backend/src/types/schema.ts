@@ -17,7 +17,8 @@ export type ApprovalType =
   | "event_go_decision" | "compliance_signoff" | "external_distribution"
   | "executive_review" | "other_protected_action";
 export type ApprovalStatus =
-  | "draft" | "requested" | "under_review" | "approved" | "rejected"
+  | "pending" | "approved" | "rejected"
+  | "draft" | "requested" | "under_review"
   | "expired" | "cancelled" | "invalidated" | "archived";
 export type ArtifactType =
   | "memo" | "brief" | "message" | "statement" | "press_guidance"

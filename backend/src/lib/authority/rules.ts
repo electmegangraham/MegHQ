@@ -54,22 +54,31 @@ export function checkAuthority(input: AuthorityInput): AuthorityResult {
     };
   }
 
+  if (input.actor.type === "system" && input.context?.["userOnly"] === true) {
+    return {
+      allowed: false,
+      reason: "This action requires a user actor."
+    };
+  }
+
   const approvalRequired = input.context?.["approvalRequired"] === true;
   const approvalId = input.context?.["approvalId"];
+  const approvalStatus = input.context?.["approvalStatus"];
 
   if (approvalRequired) {
+    if (approvalStatus === "approved" && typeof approvalId === "string") {
+      return {
+        allowed: true,
+        reason: "Protected action has approved authorization.",
+        approvalId
+      };
+    }
+
     return {
       allowed: true,
       requiresApproval: true,
       reason: "Protected action requires approval before execution.",
       ...(typeof approvalId === "string" ? { approvalId } : {})
-    };
-  }
-
-  if (input.actor.type === "system" && input.context?.["userOnly"] === true) {
-    return {
-      allowed: false,
-      reason: "This action requires a user actor."
     };
   }
 
