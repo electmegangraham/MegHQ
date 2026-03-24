@@ -1,8 +1,7 @@
-
 import { evaluateTransition } from "./rules.js";
-import type { TransitionRequest } from "./types.js";
+import type { TransitionRequest, TransitionResult } from "./types.js";
 
-export function enforceExecutionTransition(input: TransitionRequest) {
+export function enforceExecutionTransition(input: TransitionRequest): TransitionResult {
   const result = evaluateTransition(input);
 
   if (!result.allowed) {
@@ -14,4 +13,12 @@ export function enforceExecutionTransition(input: TransitionRequest) {
   }
 
   return result;
+}
+
+export function enforceExecution(currentStatus: string, nextStatus: string) {
+  return enforceExecutionTransition({
+    objectType: "task",
+    currentStatus,
+    nextStatus
+  });
 }
