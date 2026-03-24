@@ -8,7 +8,7 @@ export interface VerticalSliceAuditEvent {
   deskItemId: string;
   ok: boolean;
   reason: string;
-  sourceTrace?: Record<string, unknown> | null;
+  sourceTrace?: Record<string, unknown> | null | undefined;
   createdAt: string;
 }
 

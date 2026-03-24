@@ -5,9 +5,9 @@ export interface VerticalSliceRequest {
   taskTitle: string;
   ownerId: string;
   leadDepartmentId: string;
-  artifactId?: string;
-  approvalId?: string;
-  sourceTrace?: Record<string, unknown> | null;
+  artifactId?: string | undefined;
+  approvalId?: string | undefined;
+  sourceTrace?: Record<string, unknown> | null | undefined;
 }
 
 export interface VerticalSliceResult {
@@ -16,8 +16,8 @@ export interface VerticalSliceResult {
     signalId: string;
     initiativeId: string;
     taskId: string;
-    artifactId?: string;
-    approvalId?: string;
+    artifactId?: string | undefined;
+    approvalId?: string | undefined;
     deskItemId: string;
   };
   states: {
@@ -26,5 +26,5 @@ export interface VerticalSliceResult {
     deskItemStatus: string;
   };
   reason: string;
-  sourceTrace?: Record<string, unknown> | null;
+  sourceTrace?: Record<string, unknown> | null | undefined;
 }
