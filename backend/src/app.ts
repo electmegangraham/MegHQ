@@ -13,6 +13,7 @@ import { registerAuditRoutes } from "./routes/audit.js";
 import { registerMemoryRoutes } from "./routes/memory.js";
 import { registerCheckpointRoutes } from "./routes/checkpoints.js";
 import { registerCompressionRoutes } from "./routes/compression.js";
+import { registerPolicyRoutes } from "./routes/policy.js";
 
 import { registerAuthGuardHook } from "./lib/authGuard.js";
 
@@ -35,8 +36,11 @@ export function buildApp() {
   registerMemoryRoutes(app);
   registerCheckpointRoutes(app);
   registerCompressionRoutes(app);
+  registerPolicyRoutes(app);
 
   return app;
 }
+
+
 
 
