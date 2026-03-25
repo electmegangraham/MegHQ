@@ -23,3 +23,11 @@ When uncertain:
 - prefer existing canonical file
 - prefer explicit rule over inference
 - prefer controlled update over redesign
+
+Definition of Done Enforcement
+
+No feature, PR, or system component is considered complete unless it directly contributes to the criteria defined in:
+docs/00_master/FULLY_DONE_DEFINITION.md
+
+If a change does not move the system toward this definition, it should not be built.
+

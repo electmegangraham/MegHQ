@@ -42,3 +42,9 @@ Recovery files are staging/evidence, not superior truth:
 
 ## Rule
 If a recovery file conflicts with a canonical file, canonical wins unless a deliberate canonical update is made.
+
+FULLY_DONE_DEFINITION.md
+- Defines the complete system end-state required for launch
+- Governs what "complete" means across backend, product, intelligence, UI, and operations
+- All roadmap, PRs, and features must trace toward this definition
+

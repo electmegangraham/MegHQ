@@ -38,3 +38,6 @@ This file lists the canonical MegHQ files that define system truth and must be r
 
 ## Rule
 If any file outside the canonical core appears to conflict with the canonical core, the canonical core wins unless a deliberate canonical update is made.
+
+docs/00_master/FULLY_DONE_DEFINITION.md — canonical definition of "fully done" and master completion work plan (highest-level completion standard)
+
