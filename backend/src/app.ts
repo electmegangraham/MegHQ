@@ -11,6 +11,7 @@ import { registerCampaignManagerRoutes } from "./routes/campaignManager.js";
 import { registerVerticalSliceRoutes } from "./routes/verticalSlice.js";
 import { registerAuditRoutes } from "./routes/audit.js";
 import { registerMemoryRoutes } from "./routes/memory.js";
+import { registerCheckpointRoutes } from "./routes/checkpoints.js";
 
 import { registerAuthGuardHook } from "./lib/authGuard.js";
 
@@ -31,6 +32,7 @@ export function buildApp() {
   registerVerticalSliceRoutes(app);
   registerAuditRoutes(app);
   registerMemoryRoutes(app);
+  registerCheckpointRoutes(app);
 
   return app;
 }
