@@ -12,6 +12,7 @@ import { registerVerticalSliceRoutes } from "./routes/verticalSlice.js";
 import { registerAuditRoutes } from "./routes/audit.js";
 import { registerMemoryRoutes } from "./routes/memory.js";
 import { registerCheckpointRoutes } from "./routes/checkpoints.js";
+import { registerCompressionRoutes } from "./routes/compression.js";
 
 import { registerAuthGuardHook } from "./lib/authGuard.js";
 
@@ -33,6 +34,9 @@ export function buildApp() {
   registerAuditRoutes(app);
   registerMemoryRoutes(app);
   registerCheckpointRoutes(app);
+  registerCompressionRoutes(app);
 
   return app;
 }
+
+
