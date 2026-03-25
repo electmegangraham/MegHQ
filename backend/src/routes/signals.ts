@@ -1,9 +1,11 @@
 import { FastifyInstance } from "fastify";
-import { createVerticalSlice } from "../lib/vertical-slice/service.js";
+import { runExecutionPipeline } from "../lib/execution/pipeline.js";
 
 export async function registerSignalRoutes(app: FastifyInstance) {
-  app.post("/signals", async (req, _res) => {
-    const result = createVerticalSlice((req.body ?? {}) as Parameters<typeof createVerticalSlice>[0]);
-    return result;
+  app.post("/signals", async (req: any) => {
+    return runExecutionPipeline(app.pg, {
+      action: "create_signal",
+      payload: req.body,
+    });
   });
 }
