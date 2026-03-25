@@ -14,6 +14,8 @@ import { registerMemoryRoutes } from "./routes/memory.js";
 import { registerCheckpointRoutes } from "./routes/checkpoints.js";
 import { registerCompressionRoutes } from "./routes/compression.js";
 import { registerPolicyRoutes } from "./routes/policy.js";
+import { registerSignalRoutes } from "./routes/signals.js";
+import { registerDeskRoutes } from "./routes/desk.js";
 
 import { registerAuthGuardHook } from "./lib/authGuard.js";
 
@@ -37,9 +39,15 @@ export function buildApp() {
   registerCheckpointRoutes(app);
   registerCompressionRoutes(app);
   registerPolicyRoutes(app);
+  registerSignalRoutes(app);
+  registerDeskRoutes(app);
 
   return app;
 }
+
+
+
+
 
 
 
