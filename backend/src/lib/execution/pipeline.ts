@@ -1,3 +1,20 @@
+// tracking_all_actions
+async function track(db, entityId, type) {
+  await db.query(
+    "insert into audit_events (event_type, entity_id) values (,)",
+    [type, entityId]
+  );
+
+  await db.query(
+    "insert into checkpoints (entity_id, entity_type) values (,)",
+    [entityId, type]
+  );
+
+  await db.query(
+    "insert into memory_entries (entity_id, content) values (,)",
+    [entityId, type + " created"]
+  );
+}
 import { evaluatePolicy } from "../policy/service.js";
 
 export async function runExecutionPipeline(db: any, input: any) {
@@ -18,7 +35,8 @@ export async function runExecutionPipeline(db: any, input: any) {
       [input.payload?.title ?? "signal"]
     );
 
-    return { signalId: result.rows[0].id };
+    await track(db, result.rows[0].id, "signal");
+return { signalId: result.rows[0].id };
   }
 
   if (input.action === "create_initiative") {
@@ -27,7 +45,8 @@ export async function runExecutionPipeline(db: any, input: any) {
       [input.signalId]
     );
 
-    return { initiativeId: result.rows[0].id };
+    await track(db, result.rows[0].id, "initiative");
+return { initiativeId: result.rows[0].id };
   }
 
   if (input.action === "create_task") {
@@ -36,7 +55,8 @@ export async function runExecutionPipeline(db: any, input: any) {
       [input.initiativeId]
     );
 
-    return { taskId: result.rows[0].id };
+    await track(db, result.rows[0].id, "task");
+return { taskId: result.rows[0].id };
   }
 
   const { taskId } = input;
@@ -97,3 +117,4 @@ export async function runExecutionPipeline(db: any, input: any) {
 
   return result;
 }
+
