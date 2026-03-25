@@ -3,6 +3,18 @@ import { evaluatePolicy } from "../policy/service.js";
 export async function runExecutionPipeline(db: any, input: any) {
   const { taskId } = input;
 
+// create_signal handler
+if (input.action === "create_signal") {
+  const { payload } = input;
+
+  const result = await db.query(
+    "insert into signals (id, title) values (gen_random_uuid(), ) returning id",
+    [payload?.title ?? "signal"]
+  );
+
+  return { signalId: result.rows[0].id };
+}
+
   if (!taskId) return { error: "missing taskId" };
 
   // authority (placeholder allow)
@@ -46,3 +58,4 @@ export async function runExecutionPipeline(db: any, input: any) {
 
   return { success: true };
 }
+
