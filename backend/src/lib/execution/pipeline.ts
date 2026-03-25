@@ -1,6 +1,17 @@
 import { evaluatePolicy } from "../policy/service.js";
 
 export async function runExecutionPipeline(db: any, input: any) {
+// idempotency check
+if (input.idempotencyKey) {
+  const existing = await db.query(
+    "select response from idempotency_keys where key = ",
+    [input.idempotencyKey]
+  );
+
+  if (existing.rows.length) {
+    return existing.rows[0].response;
+  }
+}
   if (input.action === "create_initiative") {
     const { signalId } = input;
     const r = await db.query(
@@ -62,5 +73,15 @@ export async function runExecutionPipeline(db: any, input: any) {
     [taskId]
   );
 
-  return { success: true };
+  const result = { success: true };
+
+if (input.idempotencyKey) {
+  await db.query(
+    "insert into idempotency_keys (key, response) values (, )",
+    [input.idempotencyKey, result]
+  );
 }
+
+return result;
+}
+
