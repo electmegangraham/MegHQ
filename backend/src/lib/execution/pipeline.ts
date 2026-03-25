@@ -1,3 +1,22 @@
+// create_initiative handler
+if (input.action === "create_initiative") {
+  const { signalId } = input;
+  const r = await db.query(
+    "insert into initiatives (id, signal_id) values (gen_random_uuid(), ) returning id",
+    [signalId]
+  );
+  return { initiativeId: r.rows[0].id };
+}
+
+// create_task handler
+if (input.action === "create_task") {
+  const { initiativeId } = input;
+  const r = await db.query(
+    "insert into tasks (id, initiative_id, status) values (gen_random_uuid(), , 'pending_approval') returning id",
+    [initiativeId]
+  );
+  return { taskId: r.rows[0].id };
+}
 import { evaluatePolicy } from "../policy/service.js";
 
 export async function runExecutionPipeline(db: any, input: any) {
@@ -58,4 +77,5 @@ if (input.action === "create_signal") {
 
   return { success: true };
 }
+
 
