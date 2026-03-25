@@ -1,113 +1,46 @@
-export type SignalInput = {
-  projectId?: string;
-  signalType?: string;
-  title?: string;
-  description?: string;
-  requiresApproval?: boolean;
-};
+import { randomUUID } from "crypto";
 
-export type VerticalSliceResult = {
-  signal: {
-    id: string;
-    projectId: string;
-    signalType: string;
-    title: string;
-    description: string;
-    status: "received";
-  };
-  initiative: {
-    id: string;
-    signalId: string;
-    title: string;
-    status: "proposed";
-  };
-  task: {
-    id: string;
-    initiativeId: string;
-    title: string;
-    status: "pending_approval" | "ready";
-  };
-  approval: null | {
-    id: string;
-    taskId: string;
-    status: "pending";
-  };
-  deskItem: {
-    id: string;
-    entityType: "approval" | "execution";
-    entityId: string;
-    status: "active";
-  };
-};
-
-function makeId(prefix: string): string {
-  return `${prefix}_${Math.random().toString(36).slice(2, 10)}`;
+export async function createSignal(db: any, input: any) {
+  const id = randomUUID();
+  await db.query(
+    "insert into signals (id, title) values ($1,$2)",
+    [id, input.title ?? "signal"]
+  );
+  return { id };
 }
 
-export function createVerticalSlice(input: SignalInput): VerticalSliceResult {
-  const projectId = input.projectId ?? "default";
-  const signalId = makeId("sig");
-  const initiativeId = makeId("init");
-  const taskId = makeId("task");
-  const requiresApproval = input.requiresApproval ?? true;
-
-  const signal = {
-    id: signalId,
-    projectId,
-    signalType: input.signalType ?? "general",
-    title: input.title ?? "New signal",
-    description: input.description ?? "",
-    status: "received" as const,
-  };
-
-  const initiative = {
-    id: initiativeId,
-    signalId,
-    title: signal.title,
-    status: "proposed" as const,
-  };
-
-  const task = {
-    id: taskId,
-    initiativeId,
-    title: signal.title,
-    status: (requiresApproval ? "pending_approval" : "ready") as const,
-  };
-
-  const approval = requiresApproval
-    ? {
-        id: makeId("approval"),
-        taskId,
-        status: "pending" as const,
-      }
-    : null;
-
-  const deskItem = {
-    id: makeId("desk"),
-    entityType: (approval ? "approval" : "execution") as const,
-    entityId: approval ? approval.id : task.id,
-    status: "active" as const,
-  };
-
-  return {
-    signal,
-    initiative,
-    task,
-    approval,
-    deskItem,
-  };
+export async function createInitiative(db: any, signalId: string) {
+  const id = randomUUID();
+  await db.query(
+    "insert into initiatives (id, signal_id) values ($1,$2)",
+    [id, signalId]
+  );
+  return { id };
 }
 
-export function getDeskProjection() {
-  return {
-    items: [
-      {
-        id: "desk_sample",
-        entityType: "approval",
-        entityId: "approval_sample",
-        status: "active",
-        title: "Pending approval for vertical slice execution",
-      },
-    ],
-  };
+export async function createTask(db: any, initiativeId: string) {
+  const id = randomUUID();
+  await db.query(
+    "insert into tasks (id, initiative_id) values ($1,$2)",
+    [id, initiativeId]
+  );
+  return { id };
+}
+
+export async function createApproval(db: any, taskId: string) {
+  const id = randomUUID();
+  await db.query(
+    "insert into approvals (id, task_id, status) values ($1,$2,'pending')",
+    [id, taskId]
+  );
+  return { id };
+}
+
+export async function createDeskItem(db: any, entityId: string) {
+  const id = randomUUID();
+  await db.query(
+    "insert into desk_items (id, entity_id) values ($1,$2)",
+    [id, entityId]
+  );
+  return { id };
 }

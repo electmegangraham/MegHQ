@@ -1,4 +1,4 @@
-import Fastify from "fastify";
+import { registerSliceRoutes } from "./routes/slice.js";`r`nimport Fastify from "fastify";
 import cors from "@fastify/cors";
 import sensible from "@fastify/sensible";
 
@@ -41,9 +41,11 @@ export function buildApp() {
   registerPolicyRoutes(app);
   registerSignalRoutes(app);
   registerDeskRoutes(app);
+  registerSliceRoutes(app);
 
   return app;
 }
+
 
 
 
