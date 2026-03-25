@@ -1,4 +1,4 @@
-import { registerExecutionEnhancements } from "./routes/execution_enhance.js";`r`nimport { registerApprovalRoutes } from "./routes/approvals.js";`r`nimport { registerSliceExecutionRoutes } from "./routes/slice_execute.js";`r`nimport { registerSliceRoutes } from "./routes/slice.js";`r`nimport Fastify from "fastify";
+import { registerExecutionPipelineRoutes } from "./routes/execution_pipeline.js";`r`nimport { registerExecutionEnhancements } from "./routes/execution_enhance.js";`r`nimport { registerApprovalRoutes } from "./routes/approvals.js";`r`nimport { registerSliceExecutionRoutes } from "./routes/slice_execute.js";`r`nimport { registerSliceRoutes } from "./routes/slice.js";`r`nimport Fastify from "fastify";
 import cors from "@fastify/cors";
 import sensible from "@fastify/sensible";
 
@@ -45,9 +45,11 @@ export function buildApp() {
   registerSliceExecutionRoutes(app);
   registerApprovalRoutes(app);
   registerExecutionEnhancements(app);
+  registerExecutionPipelineRoutes(app);
 
   return app;
 }
+
 
 
 
